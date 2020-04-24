@@ -57,6 +57,10 @@ def clean_data(df):
     # The final dataset contains only unique messages with uniques ids
 
     df_final = df_clean.groupby(['id', 'message', 'genre']).max().reset_index()
+
+    # Excluding Empty Messages and meagninless phrases. Like: '#NAME!'
+    df_final.drop(df_final[df_final['message'].str.len() < 28].index,
+                  inplace=True)
     return df_final
 
 

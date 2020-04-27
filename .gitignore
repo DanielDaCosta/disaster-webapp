@@ -1,3 +1,4 @@
+glove/
 *.db
 .DS_Store
 *.csv

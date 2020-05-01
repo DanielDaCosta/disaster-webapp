@@ -1,3 +1,4 @@
+*.ipynb
 glove/
 *.db
 .DS_Store

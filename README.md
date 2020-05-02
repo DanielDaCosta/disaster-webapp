@@ -14,6 +14,8 @@ In the **Random Forest** model, the parameter *class_weight* was set to *'balanc
 
 <img src="Images/Image_1.png" width="1000">
 <img src="Images/Image_2.png" width="1000">
+
+Sentence Classfier
 <img src="Images/Image_3.png" width="1000">
 
 ## Usage

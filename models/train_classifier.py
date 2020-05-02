@@ -135,7 +135,9 @@ def build_model():
     # Model already with the best parameters
 
     # parameters = {
-    #     'clf__estimator__min_samples_split': [8, 9]
+    #     'clf__estimator__max_samples': [0.6, 0.7, 0.9],
+    #     'clf__estimator__min_samples_split': [8, 9],
+    #     'clf__estimator__max_depth': [6, 8, 10],
     # }
 
     # cv = GridSearchCV(pipeline, param_grid=parameters)

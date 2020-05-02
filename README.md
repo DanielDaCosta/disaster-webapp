@@ -29,23 +29,23 @@ In the **Random Forest** model, the parameter *class_weight* was set to *'balanc
 ### File Structure
 
 ```
-- app
-| - template
-| |- master.html  # main page of web app
-| |- go.html  # classification result page of web app
-|- run.py  # Flask file that runs app
-
-- data
-|- disaster_categories.csv  # data to process 
-|- disaster_messages.csv  # data to process
-|- process_data.py
-|- InsertDatabaseName.db   # database to save clean data to
-
-- models
-|- train_classifier.py
-|- classifier.pkl  # saved model 
-
-- README.md
+.
+├── LICENSE
+├── README.md
+├── app
+│   ├── run.py # Flask file that runs app
+│   └── templates
+│       ├── go.html # classification result page of web app
+│       └── master.html # main page of web app
+├── data
+│   ├── DisasterResponse.db # database to save clean data to
+│   ├── disaster_categories.csv # data to process
+│   ├── disaster_messages.csv # data to process
+│   └── process_data.py
+├── models
+│   ├── classifier.pkl # saved model 
+│   └── train_classifier.py
+└── requirements.txt
 ```
 
 ## Installation

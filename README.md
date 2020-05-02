@@ -1,2 +1,65 @@
-# disater-webapp
-Disaster Response Project
+# Multi Label Text Classifier Project
+
+The project consists of a Multi-Label Text Classifier project using a Random Forest Classifier with MultiOuputClassifier from Sklearn.
+
+The dataset consists of disaster messages that are classified into 36 different classes. The goal of the project is to classify an input message into these different classes.
+
+The project was developped into a Web Application where you can analyze the dataset and write your own message to be classified.
+
+## Dataset
+
+The dataset consists of disaster messages that are classified into 36 different classes. The dataset in highly imbalanced, having different distributions for each class. In order to reduce this problem a class weighted approach was used, where we make the classifier aware of the imbalanced data by incorporating the weights of classes into the cost function.
+
+In the **Random Forest** model, the parameter *class_weight* was set to *'balanced'*, using the values of y to automatically adjust weights inversely proportional to class frequencies in the input data
+
+## Usage
+
+- data/ : ETL folder. Data preparation. To load the data from scratch:
+
+```python process_data.py disaster_messages.csv disaster_categories.csv DisasterResponse.db ```
+
+- models/ : Machine Learning models. To train the model:
+
+```python train_classifier.py ../data/DisasterResponse.db classifier.pkl```
+
+- app/ : Contains the scripts for the web application. In order to run de application go into the app/ folder an run the command:
+
+``` python run.py```.
+
+### File Structure
+
+```
+- app
+| - template
+| |- master.html  # main page of web app
+| |- go.html  # classification result page of web app
+|- run.py  # Flask file that runs app
+
+- data
+|- disaster_categories.csv  # data to process 
+|- disaster_messages.csv  # data to process
+|- process_data.py
+|- InsertDatabaseName.db   # database to save clean data to
+
+- models
+|- train_classifier.py
+|- classifier.pkl  # saved model 
+
+- README.md
+```
+
+## Installation
+
+```
+pip install -r requirements.py
+```
+## Development
+
+
+Other models architetures were also explored. You can check the solution for the same problem using **RNN with keras** in this other GitHub Repo: [Multi-Label Text classification problem with Keras](https://github.com/DanielDaCosta/RNN-Keras/blob/master/ML-Pipeline-RNN.ipynb)
+
+## Acknowledgments and References
+Special thanks to [Figure Eight](https://appen.com/) for the dataset.
+- https://towardsdatascience.com/another-twitter-sentiment-analysis-bb5b01ebad90
+- https://www.kaggle.com/gunesevitan/nlp-with-disaster-tweets-eda-cleaning-and-bert#3.-Target-and-N-grams
+- https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9

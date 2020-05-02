@@ -12,6 +12,7 @@ The dataset consists of disaster messages that are classified into 36 different 
 
 In the **Random Forest** model, the parameter *class_weight* was set to *'balanced'*, using the values of y to automatically adjust weights inversely proportional to class frequencies in the input data
 
+## Web Application
 <img src="Images/Image_1.png" width="1000">
 <img src="Images/Image_2.png" width="1000">
 

@@ -123,7 +123,7 @@ def build_model():
     # class_weight='balanced' parameter was added to
     # the RandomForestClassifier
     pipeline = Pipeline([
-        ('vect', CountVectorizer(tokenizer=tokenize)),
+        ('vect', CountVectorizer(tokenizer=tokenize, max_features=20000)),
         ('tfidf', TfidfTransformer()),
         ('clf', MultiOutputClassifier(RandomForestClassifier(
             bootstrap=True, n_estimators=150, max_features='sqrt',

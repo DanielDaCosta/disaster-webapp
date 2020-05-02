@@ -2,8 +2,10 @@ import json
 import plotly
 import pandas as pd
 
+import re
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 from flask import Flask
 from flask import render_template, request, jsonify
@@ -16,15 +18,66 @@ app = Flask(__name__)
 
 
 def tokenize(text):
-    tokens = word_tokenize(text)
+    """ Tokenize string
+
+    Args:
+        text(string)
+    Returns:
+        tokens(list): tokens in list of strings format
+    """
+    text = text.lower()
+    stop_words = stopwords.words("english")
     lemmatizer = WordNetLemmatizer()
+    # '@' mention. Even tough @ adds some information to the message,
+    # this information doesn't add value build the classifcation model
+    text = re.sub(r'@[A-Za-z0-9_]+', '', text)
 
-    clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
+    # Dealing with URL links
+    url_regex = ('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]'
+                 '|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+    text = re.sub(url_regex, 'urlplaceholder', text)
+    # A lot of url are write as follows: http bit.ly. Apply Regex for these 
+    # cases
+    utl_regex_2 = 'http [a-zA-Z]+\.[a-zA-Z]+'
+    text = re.sub(utl_regex_2, 'urlplaceholder', text)
+    # Other formats: http : //t.co/ihW64e8Z
+    utl_regex_3 = 'http \: //[a-zA-Z]\.(co|com|pt|ly)/[A-Za-z0-9_]+'
+    text = re.sub(utl_regex_3, 'urlplaceholder', text)
 
-    return clean_tokens
+    # Hashtags can provide useful informations. Removing only ``#``
+    text = re.sub('#', ' ', text)
+
+    # Contractions
+    text = re.sub(r"what's", 'what is ', text)
+    text = re.sub(r"can't", 'cannot', text)
+    text = re.sub(r"\'s", ' ', text)
+    text = re.sub(r"\'ve", ' have ', text)
+    text = re.sub(r"n't", ' not ', text)
+    text = re.sub(r"im", 'i am ', text)
+    text = re.sub(r"i'm", 'i am ', text)
+    text = re.sub(r"\'re", ' are ', text)
+    text = re.sub(r"\'d", ' would ', text)
+    text = re.sub(r"\'ll", ' will ', text)
+
+    # Operations and special words
+    text = re.sub(r",", " ", text)
+    text = re.sub(r"\.", " ", text)
+    text = re.sub(r"!", " ! ", text)
+    text = re.sub(r"\/", " ", text)
+    text = re.sub(r"\^", " ^ ", text)
+    text = re.sub(r"\+", " + ", text)
+    text = re.sub(r"\-", " - ", text)
+    text = re.sub(r"\=", " = ", text)
+    text = re.sub('foof', 'food', text)
+    text = re.sub('msg', 'message', text)
+    text = re.sub(' u ', 'you', text)
+
+    # Ponctuation Removal
+    text = re.sub(r'[^a-zA-Z0-9]', ' ', text)
+    tokens = word_tokenize(text)
+    tokens = [lemmatizer.lemmatize(w) for w in tokens]
+    tokens = [tok for tok in tokens if tok not in stop_words]
+    return tokens
 
 
 # load data

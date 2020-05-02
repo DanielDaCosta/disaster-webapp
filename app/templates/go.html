@@ -8,17 +8,16 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Result</h1>
-        <ul class="list-group">
-            {% for category, classification in classification_result.items() %}
-                {% if classification == 1 %}
-                    <li class="list-group-item list-group-item-success text-center">{{category.replace('_', ' ').title()}}</li>
-                {% else %}
-                    <li class="list-group-item list-group-item-dark text-center">{{category.replace('_', ' ').title()}}</li>
-                {% endif %}
-            {% endfor %}
-
-        </div>
+    <div class="container">
+        <h1 class="text-center">Result</h1>
+            <ul class="list-group">
+                {% for category, classification in classification_result.items() %}
+                    {% if classification == 1 %}
+                        <li class="list-group-item active text-center">{{category.replace('_', ' ').title()}}</li>
+                    {% else %}
+                        <li class="list-group-item list-group-item-dark text-center">{{category.replace('_', ' ').title()}}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
     </div>
-
 {% endblock %}

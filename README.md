@@ -31,7 +31,7 @@ Sentence Classfier
 
 - app/ : Contains the scripts for the web application. In order to run de application go into the app/ folder an run the command:
 
-``` python run.py```.
+``` python run.py```
 
 ### File Structure
 

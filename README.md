@@ -62,7 +62,6 @@ pip install -r requirements.py
 ```
 ## Development
 
-
 Other models architetures were also explored. You can check the solution for the same problem using **RNN with keras** in this other GitHub Repo: [Multi-Label Text classification problem with Keras](https://github.com/DanielDaCosta/RNN-Keras/blob/master/ML-Pipeline-RNN.ipynb)
 
 ## Acknowledgments and References

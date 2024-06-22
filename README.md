@@ -1,12 +1,12 @@
 # Multi Label Text Classifier Project
 The project consists of a Multi-Label Text Classifier project using a Random Forest Classifier with MultiOuputClassifier from Scikit-learn.
 
-The dataset consists of disaster messages that are classified into 36 different classes. The goal of the model is to classify an input message into these different classes.
+The dataset consists of disaster messages that are classified into 36 different classes. The model aims to classify an input message into these different classes.
 
-A Web Application was developped allowing to analyze the dataset and write your own message to be classified.
+A Web Application was developed, allowing you to analyze the dataset and write your own message to be classified.
 
 ## Dataset
-The dataset consists of disaster messages that are classified into 36 different classes. The dataset in highly imbalanced, having different distributions for each class. In order to reduce this problem a class weighted approach was used, where we make the classifier aware of the imbalanced data by incorporating the weights of classes into the cost function.
+The dataset consists of disaster messages classified into 36 different classes. The dataset is highly imbalanced, with different distributions for each class. To reduce this problem, a class-weighted approach was used, where we made the classifier aware of the imbalanced data by incorporating the weights of classes into the cost function.
 
 In the **Random Forest** model, the parameter *class_weight* was set to *'balanced'*, using the values of y to automatically adjust weights inversely proportional to class frequencies in the input data
 
@@ -59,7 +59,7 @@ In the **Random Forest** model, the parameter *class_weight* was set to *'balanc
 pip install -r requirements.py
 ```
 ## Development
-Other models architetures were also explored. You can check the solution for the same problem using **RNN with keras** in this other GitHub Repo: [Multi-Label Text classification problem with Keras](https://github.com/DanielDaCosta/RNN-Keras/blob/master/ML-Pipeline-RNN.ipynb)
+Other models of architectures were also explored. You can check the solution for the same problem using **RNN with keras** in this other GitHub Repo: [Multi-Label Text classification problem with Keras](https://github.com/DanielDaCosta/RNN-Keras/blob/master/ML-Pipeline-RNN.ipynb)
 
 ## Acknowledgments and References
 Special thanks to [Figure Eight](https://appen.com/) for the dataset.
